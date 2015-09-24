@@ -25,3 +25,23 @@ function pwp_disable_emoji_tinymce( $plugins ) {
   }
 }
 add_action( 'init', 'pwp_disable_wp_emoji' );
+
+//change admin menu labels
+function pwp_change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Aktualności, Praca';
+    $submenu['edit.php'][5][0] = 'Aktualności, Praca';
+    $submenu['edit.php'][10][0] = 'Dodaj artykuł';
+    echo '';
+}
+add_action( 'admin_menu', 'pwp_change_post_menu_label' );
+
+//change admin object labels 
+function pwp_change_post_object_label() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Artykuły';
+    $labels->singular_name = 'Artykuł';
+}
+add_action( 'init', 'pwp_change_post_object_label' );
