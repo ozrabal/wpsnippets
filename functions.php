@@ -45,3 +45,18 @@ function pwp_change_post_object_label() {
     $labels->singular_name = 'Artykuł';
 }
 add_action( 'init', 'pwp_change_post_object_label' );
+
+//admin menu order
+function pwp_menu_order($menu_ord) {
+    if (!$menu_ord) return true;
+    return array(
+    'index.php',
+        'edit.php',
+    'edit.php?post_type=page',
+    'edit.php?post_type=product',
+        'upload.php',
+    );
+}
+add_filter('custom_menu_order', 'pwp_menu_order');
+add_filter('menu_order', 'pwp_menu_order');
+
