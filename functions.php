@@ -60,3 +60,11 @@ function pwp_menu_order($menu_ord) {
 add_filter('custom_menu_order', 'pwp_menu_order');
 add_filter('menu_order', 'pwp_menu_order');
 
+
+//disable tags
+function pwp_remove_taxonomy(){
+    register_taxonomy( 'post_tag', array() );
+}
+add_action('init', 'pwp_remove_taxonomy');
+
+
