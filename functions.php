@@ -6,6 +6,17 @@ function pwp_admin_menu_page_remove() {
 }
 add_action( 'admin_menu', 'pwp_admin_menu_page_remove' );
 
+//remove header actions
+function pwp_remove_header_actions(){
+    remove_action( 'wp_head', 'rel_canonical' );
+    remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+    remove_action( 'wp_head', 'feed_links_extra', 3 );
+    remove_action( 'wp_head', 'wp_generator' );
+    remove_action( 'wp_head', 'wlwmanifest_link' );
+    remove_action( 'wp_head', 'rsd_link' );
+}
+add_action( 'init', 'pwp_remove_header_actions' );
+
 //disable emoji
 function pwp_disable_wp_emoji() {
   remove_action( 'admin_print_styles', 'print_emoji_styles' );
